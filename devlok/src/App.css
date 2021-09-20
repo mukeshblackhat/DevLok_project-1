@@ -1,0 +1,143 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  text-decoration: none;
+}
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #cfd9fc;
+  color: white;
+}
+.main {
+  height: 98vh;
+  width: 98vw;
+  background-color: #1d195b;
+  border-radius: 60px;
+  box-shadow: 10px 10px 10px rgb(68, 68, 68);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.navbar_container {
+  height: 100%;
+  width: 25%;
+  min-width: 300px;
+  /* background-color: red; */
+  border-radius: 73px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Logo_image {
+  display: inline-block;
+  height: 52px;
+  width: 63px;
+  margin-right: 5%;
+}
+.Main_logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+  width: 75%;
+  /* background-color: black; */
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+a {
+  color: white;
+  height: 48px;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 5%;
+  background-color: #fffafa15;
+  margin: 10px 0px;
+  border-radius: 10px;
+}
+.component_images {
+  display: inline-block;
+  height: 27px;
+  width: 27px;
+  margin: 0px 5px;
+}
+.signIn_logo {
+  background-color: transparent !important;
+  font-size: 22px;
+  font-weight: bold;
+}
+.cartoon {
+  width: 75%;
+  aspect-ratio: 1/1;
+}
+
+a:hover {
+  background-color: #fffafa4d;
+}
+
+.editor {
+  height: 97%;
+  width: 95%;
+  background-color: #eaf5fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 60px;
+  margin-right: 10px;
+  color: black;
+}
+
+button {
+  height: 41px;
+  width: 45%;
+  background-color: #2591cc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px;
+  /* width: 100%; */
+}
+.submit_options {
+  width: 50%;
+  height: 50px;
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1%;
+}
+CKEditor {
+  height: 75%;
+  width: 50%;
+}
+.output {
+  color: black;
+  height: 30px;
+  width: 50%;
+  /* background-color: chartreuse; */
+}
+input {
+  background-color: transparent;
+  border: none;
+  height: 32px;
+  min-width: 500px;
+  /* width: 50%; */
+  margin: 5px 5px;
+  border-bottom: 1px solid rgb(80, 80, 80);
+}
