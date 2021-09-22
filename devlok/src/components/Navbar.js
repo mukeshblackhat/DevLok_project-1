@@ -9,8 +9,9 @@ import avatar from '../images/avatar.svg';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    return (
-        <div className="navbar_container">
+    return (<div className="navbar">
+           
+           <div className="navbar_container">
             <div className="Main_logo">
             <img src={Main_logo} alt="" className="Logo_image" /><p>Note Maker</p>
             </div>
@@ -21,6 +22,18 @@ const Navbar = () => {
             <img src={cartoon} alt="" className='cartoon'/>
             <a href="" className="signIn_logo"> <img src={avatar} alt="Dashboard" className="component_images" />Sign In</a>
         </div>
+
+        <div className="navbar_phone" >
+            <Link to="/" className="Phone_nav_button"> <img src={Dashboard} alt="Dashboard" className=""/></Link>
+            <Link to="/notes" className="Phone_nav_button"> <img src={notes} alt="Notes"className=""/></Link>
+            <div className="round_logo Phone_nav_button">
+            <img src={Main_logo} alt="" className="Logo_image" />
+                </div>
+            <Link to="/Lobby" className="Phone_nav_button"> <img src={lobby} alt="Lobby"className=""/></Link>
+            <Link to="/Resources" className="Phone_nav_button"> <img src={resources} alt="Resources"className=""/></Link>
+        </div>
+    </div>
+        
     )
 }
 

@@ -40,12 +40,21 @@ const Notes = () => {
             }
             axios.post('http://localhost:3001/notes', newNote)
          }
+
+         ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        removePlugins: [ 'Heading', 'Link' ],
+        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
        
     
    
     return (
 
-        <div className='editor'>
+        <div className='editor' id="editor">
             <h1>Notes</h1>
             <div>
             <div><span> Topic :</span> <input name="title" type="text" onChange={onHeading} value={content.title} placeholder='Topic of Notes'  /></div>
@@ -60,7 +69,7 @@ const Notes = () => {
             <button onClick={handleClick}><img src={tick} alt=''/>Submit</button>
             <button><img src={share} alt=''/>Share</button>
             </div>
-            <p className='output'>{parse(content.written)}</p>
+             
         </div>
     )
 }

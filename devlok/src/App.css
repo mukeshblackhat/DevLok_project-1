@@ -110,11 +110,12 @@ button {
 }
 
 .ck-editor__editable_inline {
-  min-height: 400px;
+  /* min-height: 400px; */
   /* width: 100%; */
 }
 .submit_options {
   width: 50%;
+  min-width: 200px;
   height: 50px;
   /* background-color: black; */
   display: flex;
@@ -124,7 +125,7 @@ button {
 }
 CKEditor {
   height: 75%;
-  width: 50%;
+  width: 10% !important;
 }
 .output {
   color: black;
@@ -136,8 +137,195 @@ input {
   background-color: transparent;
   border: none;
   height: 32px;
-  min-width: 500px;
+  min-width: 200px;
   /* width: 50%; */
   margin: 5px 5px;
   border-bottom: 1px solid rgb(80, 80, 80);
+}
+
+/* ##############################Lobby design ##############################; */
+.Lobby_container {
+  height: 100vh;
+  width: 80%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+.Note_output_box {
+  height: auto;
+  width: 100%;
+  background-color: #6dc5f4;
+  color: black;
+  padding: 5px 5px;
+  position: relative;
+  margin: 5px 0px;
+}
+.Note_output_box h3 {
+  text-transform: capitalize;
+}
+.Note_output_box i {
+  color: rgb(63, 62, 62);
+}
+.edit_button {
+  position: absolute;
+  display: inline;
+  width: auto !important;
+  height: auto !important;
+  background-color: rgba(255, 255, 255, 0.103);
+  margin: 0px;
+  padding: 0px;
+  bottom: 2px;
+  right: 2px;
+}
+.more_button {
+  display: inline;
+  width: auto !important;
+  height: auto !important;
+  background-color: rgba(255, 255, 255, 0.103);
+  margin: 0px;
+  padding: 0px;
+  color: grey;
+}
+.edit_button:hover {
+  cursor: pointer;
+}
+button:hover {
+  cursor: pointer;
+}
+
+/* ##########################################dashboard container ############################# */
+
+.Dashboard_conatiner {
+  height: auto;
+  width: 60%;
+}
+
+/* ###########################################navbar_phone ############################### */
+
+.navbar_phone {
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  left: 0px;
+  background-color: #1d195b;
+  background-color: #1d195b28;
+}
+
+.Phone_nav_button {
+  height: auto;
+  display: none;
+  margin: none;
+  padding: none;
+}
+
+/* ######################################signIn_Page################################# */
+.signIn_Page {
+  height: 100px;
+  width: 100px;
+  background-color: black;
+}
+.sigin_card {
+  height: 50%;
+  min-height: 400px;
+  min-width: 300px;
+  width: 50%;
+  background-color: #1d195b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 20px;
+}
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+/* ###################################media Query ####################################### */
+
+@media only screen and (max-width: 900px) {
+  .navbar_container {
+    display: none;
+  }
+  .Phone_nav_button {
+    display: inline;
+  }
+  body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #cfd9fc;
+    color: white;
+  }
+  .main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #1f1880;
+    border-radius: 0px;
+    box-shadow: 10px 10px 10px rgb(68, 68, 68);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  a {
+    color: white;
+    height: 5%;
+    width: 100vw;
+    display: flex;
+    align-items: space-between;
+    justify-content: space-between;
+    flex-direction: row;
+
+    background-color: transparent;
+  }
+  .round_logo {
+    background-color: rgba(255, 255, 255, 0.103);
+    padding: 3px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .round_logo img {
+    height: 35px;
+    width: 35px;
+  }
+  .Dashboard_conatiner {
+    height: auto;
+    width: 80%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .editor {
+    height: 90%;
+    width: 95%;
+    background-color: #eaf5fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    margin-right: 0px;
+    color: black;
+  }
+  .Note_output_box {
+    font-size: 12px;
+  }
+  .Lobby_container p {
+    font-size: 12px !important;
+  }
 }

@@ -1,6 +1,6 @@
-// const express = require("express");
 const express = require("express");
 const router = express.Router();
+// const parse= require('html-react-parser');
 
 const Note = require("../models/noteModule"); 
  
