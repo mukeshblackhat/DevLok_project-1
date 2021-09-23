@@ -18,7 +18,13 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.2",
+<<<<<<< HEAD
     "mongoose": "^6.0.6"
   },
   "description": ""
+=======
+    "mongoose": "^6.0.6",
+    "store": "^2.0.12"
+  }
+>>>>>>> 584736d380b16ebbecab5074c550311e7346a062
 }

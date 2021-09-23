@@ -27,17 +27,22 @@ router.post('/writter', async (req,res)=>{
 //getting all user notes
 router.get('/allSaved',async (req,res)=>{
    
-   const author=req.body.author
+   const amaze=req.body.author.toString()
    
+<<<<<<< HEAD
    const allWrittenNotes= await writtenNotes.find()
    .then(author=>res.send(authore);)res.json(allWrittenNotes)
+=======
+   const allWrittenNotes= await writtenNotes.find({author:amaze})
+   console.log(allWrittenNotes)
+>>>>>>> 584736d380b16ebbecab5074c550311e7346a062
    // console.log(allWrittenNotes)//ye null kyo aa rha ha ?????
 
-   // res.json(allWrittenNotes)
+  
    if(allWrittenNotes==null){res.send("nothing found about this user")}
    else{
    try {
-      res.send("its success")
+      res.status(200).json(allWrittenNotes)
       
    } catch (error) {
       res.send(`their is trouble in finiding your notes ${author}`)
