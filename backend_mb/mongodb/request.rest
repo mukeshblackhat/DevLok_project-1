@@ -21,12 +21,12 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3001/alien/signUp
+POST http://localhost:3001/al/login
 Content-Type: application/json
 
 {
    "email":"mukesh@gmail.com",
-   "password":"password"
+   "password":"pass"
 }
 
 ###
@@ -45,10 +45,10 @@ POST http://localhost:3001/note/writter
 Content-Type: application/json
 
 {
-    "topic":"topic2",
-    "subject":"test67",
-    "written":"oo la la",
-    "author":"test2@email.com"
+    "topic":"topic3",
+    "subject":"test47",
+    "written":"oo lllll la",
+    "author":"test1@email.com"
 }
 
 
@@ -58,5 +58,5 @@ GET http://localhost:3001/note/allSaved
 Content-Type: application/json
 
 {
-   "author":"test2@gmail.com"
+   "author":"test1@email.com"
 }
