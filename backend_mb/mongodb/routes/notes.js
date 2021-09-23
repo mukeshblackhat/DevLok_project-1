@@ -29,8 +29,8 @@ router.get('/allSaved',async (req,res)=>{
    
    const author=req.body.author
    
-   const allWrittenNotes= await writtenNotes.find(author)
-   res.json(allWrittenNotes)
+   const allWrittenNotes= await writtenNotes.find()
+   .then(author=>res.send(authore);)res.json(allWrittenNotes)
    // console.log(allWrittenNotes)//ye null kyo aa rha ha ?????
 
    // res.json(allWrittenNotes)

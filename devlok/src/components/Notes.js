@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import tick from '../images/tick.svg';
@@ -10,6 +10,7 @@ import axios from 'axios';
 const Notes = () => {
     const[content,setContent]=useState({
         title:'',
+        admin:'',
         subject:'',
         written:'',
     });
@@ -28,6 +29,14 @@ const Notes = () => {
             }
         )
         };
+        useEffect(() => {
+                fetch("http://localhost:3001/signIn").then(res=>{
+                 if(res.ok){
+                     return res.json().username
+                 }
+                }).then(jsonRes=>{setContent({admin:res.json().username})});
+           
+        } )
     const handleClick= (event)=>{
             event.preventDefault();
             console.log(content.title);
@@ -35,6 +44,7 @@ const Notes = () => {
             console.log(content.written);
             const  newNote ={
                title:content.title,
+               admin:content.admin,
                subject:content.subject, 
                written:content.written,
             }

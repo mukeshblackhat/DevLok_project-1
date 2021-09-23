@@ -6,6 +6,7 @@ import edit from '../images/edit_button_svg.svg';
 
 const Lobby = () => {
     const[notes,setNotes]=useState([ ]);
+    const[admin, setAdmin]=useState([]);
 
      
     const[load,setLoad]=useState({
@@ -21,13 +22,21 @@ const Lobby = () => {
     }
 
        useEffect(() => {
+
+        //  notes fetching 
          fetch("http://localhost:3001/Lobby").then(res=>{
              if(res.ok){
                  return res.json()
              }
-         }).then(jsonRes=>{setNotes(jsonRes);
-         setLoad({loading:false});
-         console.log(notes);});
+         }).then(jsonRes=>{setNotes(jsonRes)});
+
+
+        //  admin fetching
+         fetch("http://localhost:3001/signIn").then(res=>{
+             if(res.ok){
+                 return res.json()
+             }
+         }).then(jsonRes=>{setAdmin(jsonRes)});
        
     } )
     return (
@@ -38,14 +47,14 @@ const Lobby = () => {
             
              
              <div className="Lobby_container" >
-             <p>this is the area where you can find all of your notes . go don't worry just keep learning we keep your data safe for you</p>
-                     {notes.map( (note)=>{
+             <p>this is the area where you can find all of your notes . So don't worry just keep learning we keep your data safe for you</p>
+                     {notes.map( (note,admin)=>{
              return <div className="Note_output_box">  
               <h3>{note.title}</h3>
               <p><i>{note.subject} <button className="more_button" onClick={More_action}>.....more</button></i></p>
                 
               {/* {parse(note.written)} */}
-              <p className="author_name_lobby"><stong>BY : User_Name</stong></p>
+              <p className="author_name_lobby"><stong>BY :{note.admin}</stong></p>
               <button className="edit_button"><img src={edit} alt="eidt_button"  /></button>
               </div>
             }

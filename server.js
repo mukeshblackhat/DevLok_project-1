@@ -19,6 +19,7 @@ check.on('open',function(){
  
 // require route 
 app.use("/",require("./routes/noteRoute"));
+app.use("/",require("./routes/signInRoute"));
 
 
 app.listen(3001,function(){

@@ -39,6 +39,6 @@ app.use('/note',notes_submit)
 
 
 app.listen(3001,()=>{
-   console.log('its working')
+   console.log('its working on port 3001')
 })
 

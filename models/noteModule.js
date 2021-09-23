@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const notesSchema = {
     title: String,
+    admin:String,
     subject: String,
     written: String,
    

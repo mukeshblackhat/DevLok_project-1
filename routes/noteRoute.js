@@ -7,11 +7,12 @@ const Note = require("../models/noteModule");
 
 router.route("/notes").post( async (req,res)=>{
     const title=req.body.title;
+    const admin=req.body.admin;
     const subject=req.body.subject;
     const written=req.body.written;
     // const content= 
     const newNote= new Note({ 
-         title,subject,written,
+         title,admin,subject,written,
      });
     
     newNote.save();
