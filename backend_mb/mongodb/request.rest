@@ -1,0 +1,62 @@
+
+
+POST http://localhost:3001/alien/login
+Content-Type: application/json
+
+{
+   "email":"mukesh@gmail.com",
+   "password":"pass"
+}
+###
+POST http://localhost:3001/al/login
+Content-Type: application/json
+
+{
+ 
+    "email": "suraj@gmail.com",
+    "password": "123suraj"
+
+}
+
+
+
+###
+POST http://localhost:3001/alien/signUp
+Content-Type: application/json
+
+{
+   "email":"mukesh@gmail.com",
+   "password":"password"
+}
+
+###
+POST http://localhost:3001/alien/token 
+Content-Type: application/json
+
+{
+   "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqQGdtYWlsLmNvbSIsImlhdCI6MTYzMjI4ODM2M30.6u_PHbkrwjvauyuQFwAnyydhctAHzEEd9kz1c3jdRM8"
+}
+###
+GET http://localhost:3001/a/posts
+
+
+####
+POST http://localhost:3001/note/writter
+Content-Type: application/json
+
+{
+    "topic":"topic2",
+    "subject":"test67",
+    "written":"oo la la",
+    "author":"test2@email.com"
+}
+
+
+
+###
+GET http://localhost:3001/note/allSaved
+Content-Type: application/json
+
+{
+   "author":"test2@gmail.com"
+}
