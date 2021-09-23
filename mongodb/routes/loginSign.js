@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 const store = require('store');
 
 const bcrypt = require('bcrypt');
-// const { ConnectionPoolClosedEvent } = require('mongoose/node_modules/mongodb')
+
 
 router.use(cookieParser());
 router.get('/users', (req, res) => {
@@ -64,21 +64,20 @@ router.post('/login', async (req, res) => {
         const accessToken = generateAccessToken(user);
         const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
-        //  res.cookie('jwtCookie',accessToken)
+        
         const options = {
           expires: new Date(Number(new Date()) + 315360000000),
           httpOnly: true,
           secure: true,
         };
-        // browser.cookies.set('jwt',accessToken,options)
+        
         store.set('jwtToken', accessToken.toString());
         res
           .status(200)
          
           .json({ accessToken: accessToken, refreshToken: refreshToken });
 
-        // console.log( document.cookie)
-        // res.send('Success')
+       
       } else {
         res.send('not allowed');
       }

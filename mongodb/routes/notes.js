@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const router=express.Router()
 const writtenNotes=require('../models/notesSchema')
-// const jwt = require('jsonwebtoken')
+
 
 //new notes are here to post 
 router.post('/writter', async (req,res)=>{
@@ -31,9 +31,7 @@ router.get('/allSaved',async (req,res)=>{
    
    const allWrittenNotes= await writtenNotes.find({author:amaze})
    console.log(allWrittenNotes)
-   // console.log(allWrittenNotes)//ye null kyo aa rha ha ?????
-
-  
+ 
    if(allWrittenNotes==null){res.send("nothing found about this user")}
    else{
    try {
@@ -44,28 +42,6 @@ router.get('/allSaved',async (req,res)=>{
    }
    }
 }) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
