@@ -38,7 +38,7 @@ app.use('/note',notes_submit)
 
 
 
-app.listen(3001,()=>{
+app.listen(4001,()=>{
    console.log('its working')
 })
 

@@ -29,14 +29,14 @@ const Notes = () => {
             }
         )
         };
-        useEffect(() => {
-                fetch("http://localhost:3001/signIn").then(res=>{
-                 if(res.ok){
-                     return res.json().username
-                 }
-                }).then(jsonRes=>{setContent({admin:res.json().username})});
+        // useEffect(() => {
+        //         fetch("http://localhost:3001/signIn").then(res=>{
+        //          if(res.ok){
+        //              return res.json().username
+        //          }
+        //         }).then(jsonRes=>{setContent({admin:res.json().username})});
            
-        } )
+        // } )
     const handleClick= (event)=>{
             event.preventDefault();
             console.log(content.title);
