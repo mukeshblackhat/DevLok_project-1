@@ -16,14 +16,6 @@ con.on('open', function(){
 app.use(express.json())
 
 
-
-
-
-
-const alienRouter=require('./routes/alien')
-app.use('/ali',alienRouter)
-
-//18  19 ki tarah 
 const authRouter=require('./routes/loginSign')
 app.use('/al',authRouter)
 
