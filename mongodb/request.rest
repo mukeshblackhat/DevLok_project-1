@@ -32,10 +32,10 @@ POST http://localhost:3001/note/writter
 Content-Type: application/json
 
 {
-    "topic":"topic3",
-    "subject":"test47",
-    "written":"oo lllll la",
-    "author":"test1@email.com"
+    "topic":"topic33",
+    "subject":"test67",
+    "written":"oo lllll la"
+    
 }
 
 
@@ -45,5 +45,5 @@ GET http://localhost:3001/note/allSaved
 Content-Type: application/json
 
 {
-   "author":"test1@email.com"
+   "author":"mukesh@gmail.com"
 }
