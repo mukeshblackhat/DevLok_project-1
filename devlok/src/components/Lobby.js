@@ -24,7 +24,7 @@ const Lobby = () => {
        useEffect(() => {
 
         //  notes fetching 
-         fetch("http://localhost:3001/Lobby").then(res=>{
+         fetch("http://localhost:4001/note/allSaved").then(res=>{
              if(res.ok){
                  return res.json()
              }
@@ -32,11 +32,11 @@ const Lobby = () => {
 
 
         //  admin fetching
-         fetch("http://localhost:3001/signIn").then(res=>{
-             if(res.ok){
-                 return res.json()
-             }
-         }).then(jsonRes=>{setAdmin(jsonRes)});
+        //  fetch("http://localhost:3001/signIn").then(res=>{
+        //      if(res.ok){
+        //          return res.json()
+        //      }
+        //  }).then(jsonRes=>{setAdmin(jsonRes)});
        
     } )
     return (
@@ -50,11 +50,11 @@ const Lobby = () => {
              <p>this is the area where you can find all of your notes . So don't worry just keep learning we keep your data safe for you</p>
                      {notes.map( (note,admin)=>{
              return <div className="Note_output_box">  
-              <h3>{note.title}</h3>
+              <h3>{note.topic}</h3>
               <p><i>{note.subject} <button className="more_button" onClick={More_action}>.....more</button></i></p>
                 
               {/* {parse(note.written)} */}
-              <p className="author_name_lobby"><stong>BY :{note.admin}</stong></p>
+              <p className="author_name_lobby"><stong>BY :{note.author}</stong></p>
               <button className="edit_button"><img src={edit} alt="eidt_button"  /></button>
               </div>
             }

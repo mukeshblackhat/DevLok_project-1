@@ -247,6 +247,11 @@ button:hover {
 .sigin_card input {
   color: white;
 }
+button:active {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+}
 /* ###################################media Query ####################################### */
 /* ###################################media Query ####################################### */
 /* ###################################media Query ####################################### */

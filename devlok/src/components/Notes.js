@@ -9,8 +9,7 @@ import axios from 'axios';
 
 const Notes = () => {
     const[content,setContent]=useState({
-        title:'',
-        admin:'',
+        topic:'',
         subject:'',
         written:'',
     });
@@ -39,26 +38,30 @@ const Notes = () => {
         // } )
     const handleClick= (event)=>{
             event.preventDefault();
-            console.log(content.title);
+            console.log(content.topic);
             console.log(content.subject);
             console.log(content.written);
-            const  newNote ={
-               title:content.title,
-               admin:content.admin,
+
+
+            const  newwrittenNotes ={
+               topic:content.topic,
                subject:content.subject, 
                written:content.written,
             }
-            axios.post('http://localhost:3001/notes', newNote)
+            axios.post('http://localhost:4001/note/writter', newwrittenNotes );
+            setContent({ topic:'',
+            subject:'',
+            written:'',});
          }
 
-         ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        removePlugins: [ 'Heading', 'Link' ],
-        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
-    } )
-    .catch( error => {
-        console.log( error );
-    } );
+    //      ClassicEditor
+    // .create( document.querySelector( '#editor' ), {
+    //     removePlugins: [ 'Heading', 'Link' ],
+    //     toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+    // } )
+    // .catch( error => {
+    //     console.log( error );
+    // } );
        
     
    
@@ -67,7 +70,7 @@ const Notes = () => {
         <div className='editor' id="editor">
             <h1>Notes</h1>
             <div>
-            <div><span> Topic :</span> <input name="title" type="text" onChange={onHeading} value={content.title} placeholder='Topic of Notes'  /></div>
+            <div><span> Topic :</span> <input name="topic" type="text" onChange={onHeading} value={content.topic} placeholder='Topic of Notes'  /></div>
             <div><span> Subject :</span><input name="subject" type="text" onChange={onHeading} value={content.subject} placeholder='Brief of content'  /></div>
             </div>
             <CKEditor

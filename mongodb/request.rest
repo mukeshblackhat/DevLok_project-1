@@ -1,7 +1,5 @@
 
 
-POST http://localhost:3001/alien/login
-Content-Type: application/json
 
 {
    "email":"mukesh@gmail.com",
@@ -19,11 +17,14 @@ Content-Type: application/json
     "password": "123suraj"
 
 }
+###
+DELETE http://localhost:4001/al/logout
+
 
 
 
 ###
-POST http://localhost:3001/al/login
+POST http://localhost:4001/al/login
 Content-Type: application/json
 
 {
@@ -31,34 +32,25 @@ Content-Type: application/json
    "password":"pass"
 }
 
-###
-POST http://localhost:3001/alien/token 
-Content-Type: application/json
 
-{
-   "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqQGdtYWlsLmNvbSIsImlhdCI6MTYzMjI4ODM2M30.6u_PHbkrwjvauyuQFwAnyydhctAHzEEd9kz1c3jdRM8"
-}
 ###
-GET http://localhost:3001/a/posts
+GET http://localhost:4001/a/posts
 
 
 ####
-POST http://localhost:3001/note/writter
+POST http://localhost:4001/note/writter
 Content-Type: application/json
 
 {
-    "topic":"topic3",
-    "subject":"test47",
-    "written":"oo lllll la",
-    "author":"test1@email.com"
+    "topic":"fasdfdsdsdsadsd",
+    "subject":"tefdf6sdsd5",
+    "written":"this is testing 2"
+    
 }
 
 
 
 ###
-GET http://localhost:3001/note/allSaved
-Content-Type: application/json
-
-{
-   "author":"test2@email.com"
-}
+GET http://localhost:4001/note/allSaved
+ 
+ 

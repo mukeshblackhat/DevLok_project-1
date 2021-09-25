@@ -1,10 +1,13 @@
 const express= require('express')
 const mongoose=require('mongoose')
+const cors = require("cors")
 const url='mongodb+srv://mukesh:Ddw7iOjY5K6lf75l@cluster0.7cfw7.mongodb.net/notemaker?retryWrites=true&w=majority'
 //Ddw7iOjY5K6lf75l password for mongo cloud
 
 
 const app=express()
+app.use(cors());
+app.options("*", cors());
 
 mongoose.connect(url , {useNewUrlParser:true})
 const con =mongoose.connection
@@ -16,14 +19,6 @@ con.on('open', function(){
 app.use(express.json())
 
 
-
-
-
-
-const alienRouter=require('./routes/alien')
-app.use('/ali',alienRouter)
-
-//18  19 ki tarah 
 const authRouter=require('./routes/loginSign')
 app.use('/al',authRouter)
 

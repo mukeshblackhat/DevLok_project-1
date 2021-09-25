@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 const store = require('store');
 
 const bcrypt = require('bcrypt');
-// const { ConnectionPoolClosedEvent } = require('mongoose/node_modules/mongodb')
+
 
 router.use(cookieParser());
 router.get('/users', (req, res) => {
@@ -19,6 +19,7 @@ router.post('/signUp', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   const user = new UserDetail({
+    username:req.body.username,
     email: req.body.email,
     password: hashedPassword,
   });
@@ -49,7 +50,9 @@ router.post('/token', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  // const { email, password } = req.body;
+  const email=req.body.email;
+  const password=req.body.password;
   const foundUser = await UserDetail.findOne({ email });
 
   if (foundUser == null) {
@@ -57,28 +60,22 @@ router.post('/login', async (req, res) => {
   } else {
     try {
       const isMatch = await bcrypt.compare(password, foundUser.password);
-
       if (isMatch) {
         const user = { email: email };
-
+       
         const accessToken = generateAccessToken(user);
         const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
-        //  res.cookie('jwtCookie',accessToken)
-        const options = {
-          expires: new Date(Number(new Date()) + 315360000000),
-          httpOnly: true,
-          secure: true,
-        };
-        // browser.cookies.set('jwt',accessToken,options)
+        
+         
+        console.log(accessToken);
         store.set('jwtToken', accessToken.toString());
         res
           .status(200)
          
           .json({ accessToken: accessToken, refreshToken: refreshToken });
 
-        // console.log( document.cookie)
-        // res.send('Success')
+       
       } else {
         res.send('not allowed');
       }
@@ -87,6 +84,11 @@ router.post('/login', async (req, res) => {
     }
   }
 });
+router.delete('/logout',(req,res)=>{
+  const accessToken={}
+  store.set('jwtToken', accessToken.toString());
+  res.sendStatus(204)
+})
 
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });

@@ -25,12 +25,12 @@ const SignIn = () => {
         console.log(admin.email);
         console.log(admin.password);
        
-        const  newAdmin ={
+        const  newUserDetail ={
            username:admin.username,
            email:admin.email,
            password:admin.password,
         }
-        axios.post('http://localhost:3001/signIn', newAdmin)
+        axios.post('http://localhost:4001/al/signUp',newUserDetail)
      }
     return (
         <div className="editor">
