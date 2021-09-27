@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
  
-    "email": "suraj@gmail.com",
-    "password": "123suraj"
+    "email": "mukesh@gmail.com",
+    "password": "pass"
 
 }
 ###
@@ -53,4 +53,25 @@ Content-Type: application/json
 ###
 GET http://localhost:4001/note/allSaved
  
+###
+PUT http://localhost:4001/note/shareWith
+Content-Type: application/json
+
+{
+"_id":"614d828033c0e3baeeee9b41",
+"user1":"mukesh@gmail.com"
+}
+
+###
+GET http://localhost:4001/note/resources 
+
+
+###
  
+DELETE http://localhost:4001/note/Delete   
+Content-Type: application/json
+
+{
+"_id":"614d83a5304bed57469d61f4"
+ 
+}

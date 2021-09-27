@@ -1,90 +1,152 @@
-import React,{useEffect,useState} from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import tick from '../images/tick.svg';
-import share from '../images/share.svg';
-import parse from 'html-react-parser';
-import axios from 'axios';
-
+import React, { useEffect, useState } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import tick from "../images/tick.svg";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import lobby from "../images/collections_bookmark.svg";
+import deleteWhite from "../images/deleteWhite.svg";
 
 const Notes = () => {
-    const[content,setContent]=useState({
-        topic:'',
-        subject:'',
-        written:'',
+  const [content, setContent] = useState({
+    topic: "",
+    subject: "",
+    written: "",
+  });
+  const [notes, setNotes] = useState([]);
+  const onNOte = (event, editor) => {
+    const data = editor.getData();
+    setContent({ written: data }); //yha sting likha ha data ki jagah const ke aage bhi aur written ke sath bhi
+    // console.log(content.written);
+  };
+  useEffect(() => {
+    fetch("http://localhost:4001/note/allSaved")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonRes) => {
+        setNotes(jsonRes);
+      });
+  });
+  const onHeading = (event) => {
+    const { name, value } = event.target;
+    setContent((prevInput) => {
+      return {
+        ...prevInput,
+        [name]: value,
+      };
     });
-    const onNOte= (event,editor)=>{
-        const data=editor.getData()
-        setContent({written:data});//yha sting likha ha data ki jagah const ke aage bhi aur written ke sath bhi 
-        // console.log(content.written);
-    }
-    const onHeading= (event)=>{
-        const {name,value} =event.target;
-        setContent(prevInput=>{
-                return{
-                    ...prevInput,
-                    [name]:value 
-                }
-            }
-        )
-        };
-        // useEffect(() => {
-        //         fetch("http://localhost:3001/signIn").then(res=>{
-        //          if(res.ok){
-        //              return res.json().username
-        //          }
-        //         }).then(jsonRes=>{setContent({admin:res.json().username})});
-           
-        // } )
-    const handleClick= (event)=>{
-            event.preventDefault();
-            console.log(content.topic);
-            console.log(content.subject);
-            console.log(content.written);
+  };
 
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(content.topic);
+    console.log(content.subject);
+    console.log(content.written);
 
-            const  newwrittenNotes ={
-               topic:content.topic,
-               subject:content.subject, 
-               written:content.written,
-            }
-            axios.post('http://localhost:4001/note/writter', newwrittenNotes );
-            setContent({ topic:'',
-            subject:'',
-            written:'',});
-         }
+    const newwrittenNotes = {
+      topic: content.topic,
+      subject: content.subject,
+      written: content.written,
+    };
+    axios.post("http://localhost:4001/note/writter", newwrittenNotes);
+    setContent({ topic: "", subject: "", written: "" });
+  };
 
-    //      ClassicEditor
-    // .create( document.querySelector( '#editor' ), {
-    //     removePlugins: [ 'Heading', 'Link' ],
-    //     toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
-    // } )
-    // .catch( error => {
-    //     console.log( error );
-    // } );
-       
-    
-   
-    return (
-
-        <div className='editor' id="editor">
-            <h1>Notes</h1>
+  return (
+    <div className="editor NotesContianer" id="editor ">
+      <div className="notemaker">
+        <div className="container">
+          <h1>Notes</h1>
+          <div>
             <div>
-            <div><span> Topic :</span> <input name="topic" type="text" onChange={onHeading} value={content.topic} placeholder='Topic of Notes'  /></div>
-            <div><span> Subject :</span><input name="subject" type="text" onChange={onHeading} value={content.subject} placeholder='Brief of content'  /></div>
+              <span> Topic :</span>{" "}
+              <input
+                name="topic"
+                type="text"
+                onChange={onHeading}
+                value={content.topic}
+                placeholder="Heading......"
+              />
             </div>
+            <div>
+              <span> Subject :</span>
+              <input
+                name="subject"
+                type="text"
+                onChange={onHeading}
+                value={content.subject}
+                placeholder="Brief of content"
+              />
+            </div>
+          </div>
+          <div className="note_writter">
             <CKEditor
-             editor={ClassicEditor}
-             data={content.written}
-             onChange={onNOte}
-            /> 
-            <div className='submit_options'>
-            <button onClick={handleClick}><img src={tick} alt=''/>Submit</button>
-            <button><img src={share} alt=''/>Share</button>
-            </div>
-             
-        </div>
-    )
-}
+              editor={ClassicEditor}
+              data={content.written}
+              onChange={onNOte}
+            />
+          </div>
 
-export default Notes
+          <div className="submit_options">
+            <button onClick={handleClick}>
+              <img src={tick} alt="" />
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="lobbyShower">
+        <div className="lobbyShower_output">
+          <Link
+            to="/Lobby"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {" "}
+            All written notes
+          </Link>
+          {notes.map((note) => {
+            if (notes.length == 0) {
+              return <p>there is nothing in lobby</p>;
+            } else if (notes.length != 0) {
+              return (
+                <Link to="/Lobby" className="linkInNotes">
+                  {" "}
+                  <img src={lobby} alt="Lobby" className="component_images" />
+                  {note.topic}
+                  <button
+                    className="deleteInNotes"
+                    onClick={() => {
+                      const _id = note._id.toString();
+
+                      console.log(_id);
+                      axios({
+                        headers: {
+                          "content-type": "application/json",
+                        },
+                        method: "delete",
+                        url: "http://localhost:4001/note/Delete",
+                        data: { _id: _id },
+                      });
+                    }}
+                  >
+                    <img src={deleteWhite} alt="delete_button" />
+                  </button>
+                </Link>
+              );
+            }
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Notes;

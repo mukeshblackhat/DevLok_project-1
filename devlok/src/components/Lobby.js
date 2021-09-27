@@ -1,73 +1,170 @@
-import React , {useEffect, useState } from 'react';
-import parse from 'html-react-parser';
-import edit from '../images/edit_button_svg.svg';
-
-
+import React, { useEffect, useState } from "react";
+import parse from "html-react-parser";
+import edit from "../images/edit_button_svg.svg";
+import share_svg from "../images/share.svg";
+import deleteSvg from "../images/delete.svg";
+import shareb from "../images/share-b.svg";
+import axios from "axios";
+import Loading from "./loading";
 
 const Lobby = () => {
-    const[notes,setNotes]=useState([ ]);
-    const[admin, setAdmin]=useState([]);
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState({
+    load: true,
+  });
 
-     
-    const[load,setLoad]=useState({
-        loading:true,
-    });
-    const[more,setMore]=useState({
-        More_option:false,
-    })
+  const [share, setShare] = useState({ user1: "", _id: "" });
 
-    const More_action= ()=>{
-        setMore({More_option:true,})
-        
-    }
+  const OnShare_button_handle = (event) => {
+    event.preventDefault();
+  };
 
-       useEffect(() => {
+  // const share_change = (event) => {
 
-        //  notes fetching 
-         fetch("http://localhost:4001/note/allSaved").then(res=>{
-             if(res.ok){
-                 return res.json()
-             }
-         }).then(jsonRes=>{setNotes(jsonRes)});
+  // };
 
+  const handleEdit = (event) => {};
 
-        //  admin fetching
-        //  fetch("http://localhost:3001/signIn").then(res=>{
-        //      if(res.ok){
-        //          return res.json()
-        //      }
-        //  }).then(jsonRes=>{setAdmin(jsonRes)});
-       
-    } )
+  useEffect(() => {
+    // setLoading({load:true})
+    fetch("http://localhost:4001/note/allSaved")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonRes) => {
+        setNotes(jsonRes);
+        setLoading({ load: false });
+      });
+  });
+  if (loading.load == true) {
     return (
-        <div className='editor'>
+      <div className="editor">
+        <br />
 
-            <h3>My name is Lobby</h3><br/>
-            
-            
-             
-             <div className="Lobby_container" >
-             <p>this is the area where you can find all of your notes . So don't worry just keep learning we keep your data safe for you</p>
-                     {notes.map( (note,admin)=>{
-             return <div className="Note_output_box">  
-              <h3>{note.topic}</h3>
-              <p><i>{note.subject} <button className="more_button" onClick={More_action}>.....more</button></i></p>
-                
-              {/* {parse(note.written)} */}
-              <p className="author_name_lobby"><stong>BY :{note.author}</stong></p>
-              <button className="edit_button"><img src={edit} alt="eidt_button"  /></button>
-              </div>
-            }
-            )}
-               </div>
-           
-           
-            
-
-
-             
-            
+        <div className="Lobby_container">
+          <Loading location="Finding notes" />
         </div>
-    )
-}
+      </div>
+    );
+  } else {
+    return (
+      <div className="editor">
+        <h3>My name is Lobby</h3>
+        <br />
+
+        <div className="Lobby_container">
+          {notes.map((note) => {
+            if (notes.length == 0) {
+              return <h1>There is nothing in lobby make some Notes </h1>;
+            } else {
+              return (
+                <div className="Note_output_box">
+                  <h3>{note.topic}</h3>
+                  <i>
+                    {note.subject}{" "}
+                    <button
+                      className="more_button"
+                      onClick={() => {
+                        const idd = note._id + "1";
+                        console.log(idd);
+                        document.getElementById(idd).style.display = "flex";
+                      }}
+                    >
+                      .....more
+                    </button>
+                  </i>
+                  <div className="content" id={note._id + "1"}>
+                    {" "}
+                    {parse(note.written)}{" "}
+                  </div>
+                  <p className="author_name_lobby">
+                    <stong>By : {note.author}</stong>
+                  </p>
+
+                  <div className="edit_button">
+                    <button>
+                      <img src={edit} alt="edit_button" onClick={handleEdit} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const _id = note._id.toString();
+
+                        console.log(_id);
+                        axios({
+                          headers: {
+                            "content-type": "application/json",
+                          },
+                          method: "delete",
+                          url: "http://localhost:4001/note/Delete",
+                          data: { _id: _id },
+                        });
+                      }}
+                    >
+                      <img src={deleteSvg} alt="delete_button" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const id = note._id;
+                        console.log(id);
+                        document.getElementById(id).style.display = "flex";
+                      }}
+                    >
+                      <img src={shareb} alt="delete_button" />
+                    </button>
+                  </div>
+                  <div className="share_box" id={note._id}>
+                    <input
+                      type="text"
+                      name="user1"
+                      value={share.email}
+                      onChange={(event) => {
+                        const { value } = event.target;
+                        const _id = note._id.toString();
+                        setShare((prevInput) => {
+                          return {
+                            ...prevInput,
+                            user1: value,
+                            _id: _id,
+                          };
+                        });
+                      }}
+                    />
+                    <button
+                      className="share_button"
+                      onClick={() => {
+                        const user1 = share.user1;
+                        const _id = share._id.toString();
+                        console.log(share);
+                        axios({
+                          headers: {
+                            "content-type": "application/json",
+                          },
+                          method: "put",
+                          url: "http://localhost:4001/note/shareWith",
+                          data: { user1: user1, _id: _id },
+                        })
+                          .then((response) => {
+                            const status = response.data;
+                            console.log(status);
+                            document.getElementById(_id).style.display = "none";
+                          })
+                          .catch((error) => {
+                            console.log(error.response);
+                          });
+                      }}
+                    >
+                      <img src={share_svg} alt="" /> Share
+                    </button>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
+      </div>
+    );
+  }
+};
 export default Lobby;
