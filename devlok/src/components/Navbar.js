@@ -8,8 +8,9 @@ import cartoon from "../images/cartoon.svg";
 import avatar from "../images/avatar.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logout from "../images/logout.svg"
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [login, setLogin] = useState([
     {
       _id: "123",
@@ -17,26 +18,31 @@ const Navbar = () => {
       email: "sample@gmail.com",
     },
   ]);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:4001/a/posts")
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       } else {
-  //         setLogin([
-  //           {
-  //             _id: "123",
-  //             username: "sign In",
-  //             email: "sample@gmail.com",
-  //           },
-  //         ]);
-  //       }
-  //     })
-  //     .then((jsonRes) => {
-  //       // setLogin(jsonRes);
-  //     });
-  // });
+  const display = () => {
+    // console.log("sapna");
+  };
+  display();
+  useEffect(() => {
+    const jwt = JSON.parse(localStorage.getItem("accessToken"));
+    const jwtString = jwt.toString();
+    console.log({ jwtString });
+    console.log("expo");
+    fetch("http://localhost:4001/a/posts")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonRes) => {
+        if (props.flag == "") {
+          console.log("ho gaya ");
+        } 
+        else {
+          // setLogin(jsonRes);
+          console.log("ho gaya dubara ");
+        }
+      });
+  });
   return (
     <div className="navbar">
       <div className="navbar_container">
@@ -69,7 +75,21 @@ const Navbar = () => {
         <a href="" className="signIn_logo">
           {" "}
           <img src={avatar} alt="Dashboard" className="component_images" />{" "}
-          <div className="logout_button">{login[0].username}</div>
+          <div className="logout_button">{login[0].username} <button onClick={()=>{
+            axios({
+              headers: {
+                "content-type": "application/json",
+              },
+              method: "delete",
+              url: "http://localhost:4001/al/logout",
+               
+            })
+            .then(()=>{
+              // localStorage.setItem(accessToken:)
+              props.setToken({flag:""});
+
+            });
+          }}><img src={logout}/></button> </div>
         </a>
       </div>
 

@@ -16,7 +16,13 @@ const Notes = () => {
   const [notes, setNotes] = useState([]);
   const onNOte = (event, editor) => {
     const data = editor.getData();
-    setContent({ written: data }); //yha sting likha ha data ki jagah const ke aage bhi aur written ke sath bhi
+    // setContent({ written: data });
+    setContent((prevInput) => {
+      return {
+        ...prevInput,
+        written: data,
+      };
+    }); //yha sting likha ha data ki jagah const ke aage bhi aur written ke sath bhi
     // console.log(content.written);
   };
   useEffect(() => {

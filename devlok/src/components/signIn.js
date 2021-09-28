@@ -7,7 +7,6 @@ import lock from "../images/lock.svg";
 import user from "../images/user.svg";
 import { useHistory } from "react-router-dom";
 
-
 const SignIn = () => {
   const [admin, setAdmin] = useState({
     username: "",
@@ -35,10 +34,11 @@ const SignIn = () => {
       email: admin.email,
       password: admin.password,
     };
-    axios.post("http://localhost:4001/al/signUp", newUserDetail)
-    .then(response =>{
-      history.push("/notes");
-    })
+    axios
+      .post("http://localhost:4001/al/signUp", newUserDetail)
+      .then((response) => {
+        history.push("/login");
+      });
   };
   return (
     <div className="editor">

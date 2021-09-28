@@ -7,7 +7,7 @@ import mail from "../images/mail.svg";
 import lock from "../images/lock.svg";
 import Loading from "./loading";
 
-const Login = () => {
+const Login = (props) => {
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -19,7 +19,7 @@ const Login = () => {
     load: false,
   });
   const history = useHistory();
-  const [token, setToken] = useState("");
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDetails((prevInput) => {
@@ -51,12 +51,14 @@ const Login = () => {
       data: newUserDetail,
     })
       .then((response) => {
-        setToken(response.data.accessToken);
+        props.setToken({
+          flag:response.data.accessToken
+        });
         setLoading({
           load: false,
         });
         const status = response.data;
-        console.log(status);
+        // console.log(status);
         if (status == "not allowed") {
           setError({ status: " Account not exist " });
         } else {

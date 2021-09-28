@@ -6,6 +6,7 @@ import deleteSvg from "../images/delete.svg";
 import shareb from "../images/share-b.svg";
 import axios from "axios";
 import Loading from "./loading";
+import { Link } from "react-router-dom";
 
 const Lobby = () => {
   const [notes, setNotes] = useState([]);
@@ -50,10 +51,24 @@ const Lobby = () => {
     );
   } else {
     return (
-      <div className="editor">
-        <h3>My name is Lobby</h3>
-        <br />
+      <div className="editor add2">
+        <div className="lobbyHeading">
+          <h1>Lobby </h1>
+          <div className="lobbyHeading add">
+            <button>
+              <Link to="/login" className="waitButtonLink">
+                Make a Account{" "}
+              </Link>
+            </button>
+            <button>
+              <Link to="/notes" className="waitButtonLink">
+                Create Notes{" "}
+              </Link>
+            </button>
+          </div>
+        </div>
 
+        <br />
         <div className="Lobby_container">
           {notes.map((note) => {
             if (notes.length == 0) {

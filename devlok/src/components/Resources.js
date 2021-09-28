@@ -45,7 +45,7 @@ const Resources = () => {
    
   else {
     return (
-      <div className="editor">
+      <div className="editor add2">
         <h3>My name is Resources</h3>
         <br />
 
