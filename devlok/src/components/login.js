@@ -19,7 +19,7 @@ const Login = (props) => {
     load: false,
   });
   const history = useHistory();
-  
+  // const [token, setToken] = useState("");
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDetails((prevInput) => {
@@ -51,14 +51,18 @@ const Login = (props) => {
       data: newUserDetail,
     })
       .then((response) => {
-        props.setToken({
-          flag:response.data.accessToken
-        });
+        localStorage.clear();
+        const cook="login ho gaya";
+        
+        localStorage.setItem("key", JSON.stringify(cook));
+        
+        
+        console.log("kuch bhi");
         setLoading({
           load: false,
         });
         const status = response.data;
-        // console.log(status);
+        console.log(status);
         if (status == "not allowed") {
           setError({ status: " Account not exist " });
         } else {

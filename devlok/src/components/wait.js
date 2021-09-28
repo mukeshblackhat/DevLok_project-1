@@ -9,12 +9,12 @@ const Wait = () => {
       <h1>Seems like you are newbie.....</h1>
       <div className="waitButtonContainer">
         <button>
-          <Link to="" className="waitButtonLink">
+          <Link to="/login" className="waitButtonLink">
             Make a Account{" "}
           </Link>
         </button>
         <button>
-          <Link to="" className="waitButtonLink">
+          <Link to="/notes" className="waitButtonLink">
             Create Notes{" "}
           </Link>
         </button>

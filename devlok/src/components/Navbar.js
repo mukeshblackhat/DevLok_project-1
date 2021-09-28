@@ -8,7 +8,8 @@ import cartoon from "../images/cartoon.svg";
 import avatar from "../images/avatar.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import logout from "../images/logout.svg"
+import logout from "../images/logout.svg";
+import parse from "html-react-parser";
 
 const Navbar = (props) => {
   const [login, setLogin] = useState([
@@ -24,8 +25,7 @@ const Navbar = (props) => {
   display();
   useEffect(() => {
     const jwt = JSON.parse(localStorage.getItem("accessToken"));
-    const jwtString = jwt.toString();
-    console.log({ jwtString });
+
     console.log("expo");
     fetch("http://localhost:4001/a/posts")
       .then((res) => {
@@ -34,12 +34,22 @@ const Navbar = (props) => {
         }
       })
       .then((jsonRes) => {
-        if (props.flag == "") {
+        const jwt = JSON.parse(localStorage.getItem("key"));
+        console.log(jwt);
+        let ver = "login ho gaya";
+
+        if (jwt === ver) {
           console.log("ho gaya ");
-        } 
-        else {
-          // setLogin(jsonRes);
+          setLogin(jsonRes);
+        } else {
           console.log("ho gaya dubara ");
+          setLogin([
+            {
+              _id: "123",
+              username: "sign In",
+              email: "sample@gmail.com",
+            },
+          ]);
         }
       });
   });
@@ -75,21 +85,27 @@ const Navbar = (props) => {
         <a href="" className="signIn_logo">
           {" "}
           <img src={avatar} alt="Dashboard" className="component_images" />{" "}
-          <div className="logout_button">{login[0].username} <button onClick={()=>{
-            axios({
-              headers: {
-                "content-type": "application/json",
-              },
-              method: "delete",
-              url: "http://localhost:4001/al/logout",
-               
-            })
-            .then(()=>{
-              // localStorage.setItem(accessToken:)
-              props.setToken({flag:""});
+          <div className="logout_button">
+            {login[0].username}
+            <button
+              onClick={() => {
+                axios({
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  method: "delete",
+                  url: "http://localhost:4001/al/logout",
+                }).then(() => {
+                  localStorage.clear();
+                  const cook2 = "";
 
-            });
-          }}><img src={logout}/></button> </div>
+                  localStorage.setItem("key", JSON.stringify(cook2));
+                });
+              }}
+            >
+              <img src={logout} />
+            </button>{" "}
+          </div>
         </a>
       </div>
 

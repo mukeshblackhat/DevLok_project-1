@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import lobby from "../images/collections_bookmark.svg";
 import deleteWhite from "../images/deleteWhite.svg";
+import Wait from "./wait";
 
 const Notes = () => {
   const [content, setContent] = useState({
@@ -13,6 +14,7 @@ const Notes = () => {
     subject: "",
     written: "",
   });
+  const jwt = JSON.parse(localStorage.getItem("key"));
   const [notes, setNotes] = useState([]);
   const onNOte = (event, editor) => {
     const data = editor.getData();
@@ -60,99 +62,106 @@ const Notes = () => {
     axios.post("http://localhost:4001/note/writter", newwrittenNotes);
     setContent({ topic: "", subject: "", written: "" });
   };
-
-  return (
-    <div className="editor NotesContianer" id="editor ">
-      <div className="notemaker">
-        <div className="container">
-          <h1>Notes</h1>
-          <div>
+  if (jwt != "login ho gaya") {
+    return (
+      <div className="editor">
+        <Wait />
+      </div>
+    );
+  } else {
+    return (
+      <div className="editor NotesContianer" id="editor ">
+        <div className="notemaker">
+          <div className="container">
+            <h1>Notes</h1>
             <div>
-              <span> Topic :</span>{" "}
-              <input
-                name="topic"
-                type="text"
-                onChange={onHeading}
-                value={content.topic}
-                placeholder="Heading......"
+              <div>
+                <span> Topic :</span>{" "}
+                <input
+                  name="topic"
+                  type="text"
+                  onChange={onHeading}
+                  value={content.topic}
+                  placeholder="Heading......"
+                />
+              </div>
+              <div>
+                <span> Subject :</span>
+                <input
+                  name="subject"
+                  type="text"
+                  onChange={onHeading}
+                  value={content.subject}
+                  placeholder="Brief of content"
+                />
+              </div>
+            </div>
+            <div className="note_writter">
+              <CKEditor
+                editor={ClassicEditor}
+                data={content.written}
+                onChange={onNOte}
               />
             </div>
-            <div>
-              <span> Subject :</span>
-              <input
-                name="subject"
-                type="text"
-                onChange={onHeading}
-                value={content.subject}
-                placeholder="Brief of content"
-              />
+
+            <div className="submit_options">
+              <button onClick={handleClick}>
+                <img src={tick} alt="" />
+                Submit
+              </button>
             </div>
           </div>
-          <div className="note_writter">
-            <CKEditor
-              editor={ClassicEditor}
-              data={content.written}
-              onChange={onNOte}
-            />
-          </div>
+        </div>
 
-          <div className="submit_options">
-            <button onClick={handleClick}>
-              <img src={tick} alt="" />
-              Submit
-            </button>
+        <div className="lobbyShower">
+          <div className="lobbyShower_output">
+            <Link
+              to="/Lobby"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontWeight: "bold",
+              }}
+            >
+              {" "}
+              All written notes
+            </Link>
+            {notes.map((note) => {
+              if (notes.length == 0) {
+                return <p>there is nothing in lobby</p>;
+              } else if (notes.length != 0) {
+                return (
+                  <Link to="/Lobby" className="linkInNotes">
+                    {" "}
+                    <img src={lobby} alt="Lobby" className="component_images" />
+                    {note.topic}
+                    <button
+                      className="deleteInNotes"
+                      onClick={() => {
+                        const _id = note._id.toString();
+
+                        console.log(_id);
+                        axios({
+                          headers: {
+                            "content-type": "application/json",
+                          },
+                          method: "delete",
+                          url: "http://localhost:4001/note/Delete",
+                          data: { _id: _id },
+                        });
+                      }}
+                    >
+                      <img src={deleteWhite} alt="delete_button" />
+                    </button>
+                  </Link>
+                );
+              }
+            })}
           </div>
         </div>
       </div>
-
-      <div className="lobbyShower">
-        <div className="lobbyShower_output">
-          <Link
-            to="/Lobby"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontWeight: "bold",
-            }}
-          >
-            {" "}
-            All written notes
-          </Link>
-          {notes.map((note) => {
-            if (notes.length == 0) {
-              return <p>there is nothing in lobby</p>;
-            } else if (notes.length != 0) {
-              return (
-                <Link to="/Lobby" className="linkInNotes">
-                  {" "}
-                  <img src={lobby} alt="Lobby" className="component_images" />
-                  {note.topic}
-                  <button
-                    className="deleteInNotes"
-                    onClick={() => {
-                      const _id = note._id.toString();
-
-                      console.log(_id);
-                      axios({
-                        headers: {
-                          "content-type": "application/json",
-                        },
-                        method: "delete",
-                        url: "http://localhost:4001/note/Delete",
-                        data: { _id: _id },
-                      });
-                    }}
-                  >
-                    <img src={deleteWhite} alt="delete_button" />
-                  </button>
-                </Link>
-              );
-            }
-          })}
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Notes;
