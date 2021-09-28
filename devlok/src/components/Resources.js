@@ -16,7 +16,7 @@ const Resources = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4001/note/resources")
+    fetch("https://note-maker02.herokuapp.com/note/resources")
       .then((res) => {
         if (res.ok) {
           return res.json();

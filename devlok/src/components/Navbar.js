@@ -27,7 +27,7 @@ const Navbar = (props) => {
     const jwt = JSON.parse(localStorage.getItem("accessToken"));
 
     console.log("expo");
-    fetch("http://localhost:4001/a/posts")
+    fetch("https://note-maker02.herokuapp.com/a/posts")
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -98,7 +98,7 @@ const Navbar = (props) => {
                     "content-type": "application/json",
                   },
                   method: "delete",
-                  url: "http://localhost:4001/al/logout",
+                  url: "https://note-maker02.herokuapp.com/al/logout",
                 }).then(() => {
                  
                 });

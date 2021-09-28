@@ -35,7 +35,7 @@ const SignIn = () => {
       password: admin.password,
     };
     axios
-      .post("http://localhost:4001/al/signUp", newUserDetail)
+      .post("https://note-maker02.herokuapp.com/al/signUp", newUserDetail)
       .then((response) => {
         history.push("/login");
       });

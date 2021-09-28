@@ -8,7 +8,7 @@
 ###
 
 #########access token #######
-POST http://localhost:4001/al/login
+POST https://note-maker02.herokuapp.com/al/login
 Content-Type: application/json
 
 {
@@ -18,13 +18,13 @@ Content-Type: application/json
 
 }
 ###
-DELETE http://localhost:4001/al/logout
+DELETE https://note-maker02.herokuapp.com/al/logout
 
 
 
 
 ###
-POST http://localhost:4001/al/login
+POST https://note-maker02.herokuapp.com/al/login
 Content-Type: application/json
 
 {
@@ -34,11 +34,11 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:4001/a/posts
+GET https://note-maker02.herokuapp.com/a/posts
 
 
 ####
-POST http://localhost:4001/note/writter
+POST https://note-maker02.herokuapp.com/note/writter
 Content-Type: application/json
 
 {
@@ -51,10 +51,10 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:4001/note/allSaved
+GET https://note-maker02.herokuapp.com/note/allSaved
  
 ###
-PUT http://localhost:4001/note/shareWith
+PUT https://note-maker02.herokuapp.com/note/shareWith
 Content-Type: application/json
 
 {
@@ -63,12 +63,12 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:4001/note/resources 
+GET https://note-maker02.herokuapp.com/note/resources 
 
 
 ###
  
-DELETE http://localhost:4001/note/Delete   
+DELETE https://note-maker02.herokuapp.com/note/Delete   
 Content-Type: application/json
 
 {

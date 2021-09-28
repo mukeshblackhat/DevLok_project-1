@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "start2": "nodemon authServer.js",
-    "start3": "nodemon server.js"
+    "start": "node index.js",
+    "start2": "node authServer.js",
+    "start3": "node server.js"
   },
   "keywords": [],
   "author": "",

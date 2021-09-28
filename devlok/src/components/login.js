@@ -47,16 +47,15 @@ const Login = (props) => {
         "content-type": "application/json",
       },
       method: "post",
-      url: "http://localhost:4001/al/login",
+      url: "https://note-maker02.herokuapp.com/al/login",
       data: newUserDetail,
     })
       .then((response) => {
         localStorage.clear();
-        const cook="login ho gaya";
-        
+        const cook = "login ho gaya";
+
         localStorage.setItem("key", JSON.stringify(cook));
-        
-        
+
         console.log("kuch bhi");
         setLoading({
           load: false,

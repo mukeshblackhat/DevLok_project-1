@@ -2,7 +2,7 @@
   "name": "devlok",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:4001",
+  "proxy": "https://note-maker02.herokuapp.com/",
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon": "^29.2.0",
     "@ckeditor/ckeditor5-build-classic": "^29.2.0",

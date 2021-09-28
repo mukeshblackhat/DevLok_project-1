@@ -31,7 +31,7 @@ const Lobby = () => {
 
   useEffect(() => {
     // setLoading({load:true})
-    fetch("http://localhost:4001/note/allSaved")
+    fetch("https://note-maker02.herokuapp.com/note/allSaved")
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -85,6 +85,7 @@ const Lobby = () => {
                 return <h1>There is nothing in lobby make some Notes </h1>;
               } else {
                 return (
+                  
                   <div className="Note_output_box">
                     <h3>{note.topic}</h3>
                     <i>
@@ -122,7 +123,7 @@ const Lobby = () => {
                               "content-type": "application/json",
                             },
                             method: "delete",
-                            url: "http://localhost:4001/note/Delete",
+                            url: "https://note-maker02.herokuapp.com/note/Delete",
                             data: { _id: _id },
                           });
                         }}
@@ -167,7 +168,7 @@ const Lobby = () => {
                               "content-type": "application/json",
                             },
                             method: "put",
-                            url: "http://localhost:4001/note/shareWith",
+                            url: "https://note-maker02.herokuapp.com/note/shareWith",
                             data: { user1: user1, _id: _id },
                           })
                             .then((response) => {

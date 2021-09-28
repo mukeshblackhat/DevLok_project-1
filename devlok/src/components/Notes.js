@@ -28,7 +28,7 @@ const Notes = () => {
     // console.log(content.written);
   };
   useEffect(() => {
-    fetch("http://localhost:4001/note/allSaved")
+    fetch("https://note-maker02.herokuapp.com/note/allSaved")
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -59,7 +59,7 @@ const Notes = () => {
       subject: content.subject,
       written: content.written,
     };
-    axios.post("http://localhost:4001/note/writter", newwrittenNotes);
+    axios.post("https://note-maker02.herokuapp.com/note/writter", newwrittenNotes);
     setContent({ topic: "", subject: "", written: "" });
   };
   if (jwt != "login ho gaya") {
@@ -146,7 +146,7 @@ const Notes = () => {
                             "content-type": "application/json",
                           },
                           method: "delete",
-                          url: "http://localhost:4001/note/Delete",
+                          url: "https://note-maker02.herokuapp.com/note/Delete",
                           data: { _id: _id },
                         });
                       }}
