@@ -191,6 +191,11 @@ input {
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row !important;
+  /* justify-content: space-around; */
+  border-radius: 0px;
+  padding-left: 10px;
 }
 
 .Lobby_container::-webkit-scrollbar {
@@ -210,7 +215,8 @@ input {
 }
 .Note_output_box {
   height: auto;
-  width: 40%;
+  width: 300px;
+  /* display: flex; */
   background-color: #0795ff;
   background-color: #6dc5f4;
   background-color: white;
@@ -218,8 +224,7 @@ input {
   color: rgb(27, 27, 27);
   padding: 5px 5px;
   position: relative;
-  margin: 5px 0px;
-  border-radius: 0px;
+  margin: 5px 5px;
 }
 .Note_output_box h3 {
   text-transform: capitalize;
