@@ -89,6 +89,10 @@ const Navbar = (props) => {
             {login[0].username}
             <button
               onClick={() => {
+                localStorage.clear();
+                const cook2 = "";
+
+                localStorage.setItem("key", JSON.stringify(cook2));
                 axios({
                   headers: {
                     "content-type": "application/json",
@@ -96,10 +100,7 @@ const Navbar = (props) => {
                   method: "delete",
                   url: "http://localhost:4001/al/logout",
                 }).then(() => {
-                  localStorage.clear();
-                  const cook2 = "";
-
-                  localStorage.setItem("key", JSON.stringify(cook2));
+                 
                 });
               }}
             >

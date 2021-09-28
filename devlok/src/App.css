@@ -612,6 +612,10 @@ Link {
   .navbar_container {
     display: none;
   }
+
+  .waitContainer {
+    font-size: 7px;
+  }
   .loadingContainer {
     font-size: 10px;
   }
