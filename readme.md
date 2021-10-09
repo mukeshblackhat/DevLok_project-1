@@ -34,5 +34,6 @@ How to deploy the website and how to solve the problems during the deployment th
 Things which we learned as a team is  how to handle a problem and solve it , how to face the problem ,
 
 How to Structure a project and importance of nicely structured project .
+What a 3-tier structure is and how effective it is .
 
 How to work in a team where everyone is doing different stuff and at last collaborating with  each other  and presenting as a single project.
